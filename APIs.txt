@@ -1,0 +1,91 @@
+Code Design:
+
+    - Readability
+    - Modularity
+    - Scalability
+    - Maintainability
+    - performance
+    - Error handling
+    - Security
+    - Testing
+
+Api specifics:
+    - security: authorization, authentication, data validation. 
+    - filtering: not loading large data sets.
+    - idompotance: consistancy in outcomes.
+
+ 
+API: A way software talks to other software.
+
+- websites loading user details
+- App recieving mesages
+- Checkout page
+- frontend to backend requests.
+
+Restful:
+    - returns data (JSON) - for another app to use. 
+
+http methods:
+    GET - read data
+    POST - Create new data
+    PUT - Replace data
+    PATCH - partiall replace data
+    Delete - delete data
+
+JSON: - jackson parses json for us - both request in and response out.  
+    {"key": "value"}
+
+Testing api's':
+curl -X POST url -H  -d {}
+browser
+postman
+
+
+Springboot:
+
+    - controller
+        - controls the API entry point.
+        - should be simple + thin
+        - Listen and recieve requsts decide where to send them.
+        
+    - DTO
+        - data transfer object
+        - DTO controls what the client can send
+        - DTO controls what the client can see
+        - DTO prevents an API exposing state that it shouldnt.
+        - DTO extends to db. 
+
+    - validation
+        - prevents bad data getting too deep into our app
+        - ie: dealt with at api boundary. 
+
+    - Service
+        - service is the app logic.
+        - example message app:
+            - create a message
+            - find 
+            - delete
+        - dont directl call db.
+
+    - repository
+        - handles persistance - writes to db.
+
+    - Entity
+        - objcts that do into db.
+        - MAY HAVE INTERNAL STATE!!! 
+
+
+status codes:
+    - 200 succeded
+    - 201 created
+
+    - 400 bad request - invalid input.
+    - 404 - no reseource. 
+
+    - 500 - Server error
+
+- Exceptions:
+    - avoid vauge exceptions. Optional.
+
+
+        

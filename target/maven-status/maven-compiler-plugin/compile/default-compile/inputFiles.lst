@@ -1,0 +1,8 @@
+/home/ubuntu/mod6/demo/src/main/java/com/example/demo/DemoApplication.java
+/home/ubuntu/mod6/demo/src/main/java/com/example/demo/controller/MessageController.java
+/home/ubuntu/mod6/demo/src/main/java/com/example/demo/dto/CreateMessageRequest.java
+/home/ubuntu/mod6/demo/src/main/java/com/example/demo/dto/MessageDto.java
+/home/ubuntu/mod6/demo/src/main/java/com/example/demo/entity/Message.java
+/home/ubuntu/mod6/demo/src/main/java/com/example/demo/repository/MessageRepository.java
+/home/ubuntu/mod6/demo/src/main/java/com/example/demo/service/MessageService.java
+/home/ubuntu/mod6/demo/src/main/java/com/example/demo/validation/MessageTextValidator.java

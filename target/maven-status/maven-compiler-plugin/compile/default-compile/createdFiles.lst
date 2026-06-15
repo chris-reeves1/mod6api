@@ -1,0 +1,8 @@
+com/example/demo/service/MessageService.class
+com/example/demo/DemoApplication.class
+com/example/demo/controller/MessageController.class
+com/example/demo/dto/MessageDto.class
+com/example/demo/validation/MessageTextValidator.class
+com/example/demo/entity/Message.class
+com/example/demo/dto/CreateMessageRequest.class
+com/example/demo/repository/MessageRepository.class
