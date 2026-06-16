@@ -1,5 +1,6 @@
 com/example/demo/service/MessageService.class
 com/example/demo/DemoApplication.class
+com/example/demo/config/SecurityConfig.class
 com/example/demo/controller/MessageController.class
 com/example/demo/dto/MessageDto.class
 com/example/demo/validation/MessageTextValidator.class

@@ -1,14 +1,13 @@
 package com.example.demo.service;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-
+import com.example.demo.dto.CreateMessageRequest;
+import com.example.demo.dto.MessageDto;
 import com.example.demo.entity.Message;
 import com.example.demo.repository.MessageRepository;
 import com.example.demo.validation.MessageTextValidator;
-import com.example.demo.dto.CreateMessageRequest;
-import com.example.demo.dto.MessageDto;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -24,42 +23,56 @@ public class MessageService {
     }
 
     public List<MessageDto> getAllMessages() {
-        return repository.findAll().stream()
-                .map(this::ToDto)
+        return repository.findAll()
+                .stream()
+                .map(this::toDto)
                 .toList();
-    }
-
-    public MessageDto createMessage(MessageDto dto) {
-        String cleanedText = validateAndClean(dto.getText());
-        Message message = new Message(cleanedText);
-        Message saved = repository.save(message);   
-        return ToDto(saved);
     }
 
     public MessageDto getMessageById(Long id) {
         Message message = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Message not found for id: " + id));
-        return ToDto(message);
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Message not found with id: " + id
+                ));
+
+        return toDto(message);
     }
 
-    public void deleteMessage(Long id) {
-        if (!repository.existsById(id)) {
-            throw new RuntimeException("Message not found with id: " + id);
-        }
-        repository.deleteById(id);
-    }
+    public MessageDto createMessage(CreateMessageRequest request) {
+        String cleanedText = validateAndClean(request.getText());
 
-    public MessageDto ToDto (Message message) {
-        return new MessageDto(message.getId(), message.getText());
+        Message message = new Message(cleanedText);
+        Message saved = repository.save(message);
+
+        return toDto(saved);
     }
 
     public MessageDto updateMessage(Long id, CreateMessageRequest request) {
         Message message = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Message not found for id: " + id));
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Message not found with id: " + id
+                ));
+
         String cleanedText = validateAndClean(request.getText());
+
         message.setText(cleanedText);
+
         Message saved = repository.save(message);
-        return ToDto(saved);
+
+        return toDto(saved);
+    }
+
+    public void deleteMessage(Long id) {
+        if (!repository.existsById(id)) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    "Message not found with id: " + id
+            );
+        }
+
+        repository.deleteById(id);
     }
 
     private String validateAndClean(String text) {
@@ -74,4 +87,7 @@ public class MessageService {
         }
     }
 
+    private MessageDto toDto(Message message) {
+        return new MessageDto(message.getId(), message.getText());
+    }
 }

@@ -1,4 +1,5 @@
 /home/ubuntu/mod6/demo/src/main/java/com/example/demo/DemoApplication.java
+/home/ubuntu/mod6/demo/src/main/java/com/example/demo/config/SecurityConfig.java
 /home/ubuntu/mod6/demo/src/main/java/com/example/demo/controller/MessageController.java
 /home/ubuntu/mod6/demo/src/main/java/com/example/demo/dto/CreateMessageRequest.java
 /home/ubuntu/mod6/demo/src/main/java/com/example/demo/dto/MessageDto.java
